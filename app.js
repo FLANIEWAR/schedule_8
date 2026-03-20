@@ -84,8 +84,8 @@ function renderLessons(dayName) {
     card.style.animationDelay = `${idx * 40}ms`;
     card.innerHTML = `
       <div class="lesson-card__index">Урок ${lesson.index}</div>
-      <div class="lesson-card__time">${lesson.start} — ${lesson.end}</div>
       <div class="lesson-card__name">${lesson.name}</div>
+      <div class="lesson-card__time">${lesson.start} — ${lesson.end}</div>
     `;
     lessonsContainer.appendChild(card);
   });

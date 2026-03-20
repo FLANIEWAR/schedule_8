@@ -100,6 +100,10 @@ body[data-theme="light"] {
   transform: translateY(-1px);
 }
 
+body[data-theme="light"] .theme-btn[data-theme="light"] {
+  color: #1e1e1e;
+}
+
 .day-picker__label {
   font-weight: 600;
   margin-bottom: 10px;
@@ -159,13 +163,13 @@ body[data-theme="light"] {
   color: var(--muted);
 }
 
-.lesson-card__time {
+.lesson-card__name {
+  font-family: "Literata", serif;
   font-size: 20px;
   font-weight: 700;
 }
 
-.lesson-card__name {
-  font-family: "Literata", serif;
+.lesson-card__time {
   font-size: 15px;
   color: var(--muted);
 }
