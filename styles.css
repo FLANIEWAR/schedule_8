@@ -1,0 +1,199 @@
+﻿:root {
+  --bg: #1e1e1e;
+  --fg: #ffe788;
+  --muted: #c9b96a;
+  --card: rgba(255, 231, 136, 0.08);
+  --card-border: rgba(255, 231, 136, 0.35);
+  --accent: #ffe788;
+  --shadow: rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="light"] {
+  --bg: #e5d9c6;
+  --fg: #424e2b;
+  --muted: #5b6a3a;
+  --card: rgba(66, 78, 43, 0.08);
+  --card-border: rgba(66, 78, 43, 0.35);
+  --accent: #424e2b;
+  --shadow: rgba(0, 0, 0, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  color: var(--fg);
+  background: radial-gradient(circle at 10% 10%, rgba(255, 231, 136, 0.12), transparent 40%),
+    radial-gradient(circle at 90% 0%, rgba(255, 231, 136, 0.08), transparent 35%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0) 100%),
+    var(--bg);
+  min-height: 100vh;
+}
+
+body[data-theme="light"] {
+  background: radial-gradient(circle at 10% 10%, rgba(66, 78, 43, 0.14), transparent 40%),
+    radial-gradient(circle at 90% 0%, rgba(66, 78, 43, 0.1), transparent 35%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(0, 0, 0, 0) 100%),
+    var(--bg);
+}
+
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.brand__title {
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.brand__subtitle {
+  font-family: "Literata", serif;
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.theme-toggle {
+  display: flex;
+  gap: 8px;
+  padding: 6px;
+  border-radius: 999px;
+  border: 1px solid var(--card-border);
+  background: var(--card);
+  box-shadow: 0 8px 18px var(--shadow);
+}
+
+.theme-btn {
+  border: none;
+  background: transparent;
+  color: var(--fg);
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.theme-btn.active {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.theme-btn:hover {
+  transform: translateY(-1px);
+}
+
+.day-picker__label {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.day-picker__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.day-btn {
+  border: 1px solid var(--card-border);
+  background: var(--card);
+  color: var(--fg);
+  padding: 10px 16px;
+  border-radius: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+  min-width: 110px;
+  text-align: center;
+}
+
+.day-btn.active {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.day-btn:hover {
+  transform: translateY(-1px);
+}
+
+.lessons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.lesson-card {
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 16px;
+  background: var(--card);
+  box-shadow: 0 16px 30px var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 110px;
+  animation: fadeUp 420ms ease both;
+}
+
+.lesson-card__index {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  color: var(--muted);
+}
+
+.lesson-card__time {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.lesson-card__name {
+  font-family: "Literata", serif;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.footer {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .theme-toggle {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

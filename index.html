@@ -1,0 +1,39 @@
+﻿<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Расписание на 8 уроков</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Literata:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-theme="dark">
+    <div class="page">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand__title">Расписание</div>
+          <div class="brand__subtitle">8 уроков в день</div>
+        </div>
+        <div class="theme-toggle" role="group" aria-label="Переключение темы">
+          <button class="theme-btn" data-theme="dark" type="button">Темная</button>
+          <button class="theme-btn" data-theme="light" type="button">Светлая</button>
+        </div>
+      </header>
+
+      <section class="day-picker" aria-label="Выбор дня недели">
+        <div class="day-picker__label">День недели</div>
+        <div class="day-picker__buttons" id="dayButtons"></div>
+      </section>
+
+      <main class="lessons" id="lessons"></main>
+
+      <footer class="footer">
+        Редактируй уроки и время в файле <code>lessons.xml</code>.
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
