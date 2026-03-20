@@ -1,6 +1,6 @@
 ﻿const dayButtons = document.getElementById("dayButtons");
 const lessonsContainer = document.getElementById("lessons");
-const themeButtons = document.querySelectorAll(".theme-btn");
+const themeToggle = document.getElementById("themeToggle");
 
 let scheduleData = [];
 let activeDay = "";
@@ -17,10 +17,10 @@ const dayOrder = [
 
 function setTheme(theme) {
   document.body.setAttribute("data-theme", theme);
-  themeButtons.forEach((btn) => {
-    btn.classList.toggle("active", btn.dataset.theme === theme);
-  });
   localStorage.setItem("scheduleTheme", theme);
+  if (themeToggle) {
+    themeToggle.textContent = theme === "light" ? "Тема: Светлая" : "Тема: Темная";
+  }
 }
 
 function parseSchedule(xmlText) {
@@ -103,9 +103,12 @@ function initTheme() {
   const saved = localStorage.getItem("scheduleTheme");
   setTheme(saved || "dark");
 
-  themeButtons.forEach((btn) => {
-    btn.addEventListener("click", () => setTheme(btn.dataset.theme));
-  });
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const current = document.body.getAttribute("data-theme") || "dark";
+      setTheme(current === "dark" ? "light" : "dark");
+    });
+  }
 }
 
 async function init() {
