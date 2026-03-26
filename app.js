@@ -69,16 +69,16 @@ function renderLessons(dayName) {
   const day = scheduleData.find((item) => item.name === dayName);
   const lessons = day ? day.lessons : [];
 
-  const normalized = Array.from({ length: 8 }, (_, idx) => {
-    return lessons[idx] || {
-      index: String(idx + 1),
-      start: "--:--",
-      end: "--:--",
-      name: "Урок не задан",
-    };
-  });
+  if (lessons.length === 0) {
+    lessonsContainer.innerHTML = "<p>В этот день уроков нет.</p>";
+    return;
+  }
 
-  normalized.forEach((lesson, idx) => {
+  const orderedLessons = lessons
+    .slice()
+    .sort((a, b) => Number(a.index) - Number(b.index));
+
+  orderedLessons.forEach((lesson, idx) => {
     const card = document.createElement("article");
     card.className = "lesson-card";
     card.style.animationDelay = `${idx * 40}ms`;
