@@ -1,53 +1,47 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <schedule>
   <day name="Понедельник">
-    <lesson index="1" start="08:00" end="08:40">Математика</lesson>
-    <lesson index="2" start="08:55" end="09:40">Русский язык</lesson>
-    <lesson index="3" start="09:50" end="10:35">История</lesson>
-    <lesson index="4" start="10:45" end="11:30">Физика</lesson>
-    <lesson index="5" start="11:40" end="12:25">Английский язык</lesson>
-    <lesson index="6" start="12:35" end="13:20">Информатика</lesson>
-    <lesson index="7" start="13:30" end="14:15">Литература</lesson>
-    <lesson index="8" start="14:25" end="15:10">Физкультура</lesson>
+    <lesson index="1" start="08:00" end="08:40">Разговоры о важном</lesson>
+    <lesson index="2" start="08:55" end="09:40">Алгебра</lesson>
+    <lesson index="3" start="09:50" end="10:35">ОБЗР</lesson>
+    <lesson index="4" start="10:45" end="11:30">Биология</lesson>
+    <lesson index="5" start="11:40" end="12:25">Алгебра</lesson>
+    <lesson index="6" start="12:35" end="13:20">Физика</lesson>
+    <lesson index="7" start="13:30" end="14:15">Английский</lesson>
   </day>
   <day name="Вторник">
     <lesson index="1" start="08:00" end="08:45">Алгебра</lesson>
     <lesson index="2" start="08:55" end="09:40">Геометрия</lesson>
-    <lesson index="3" start="09:50" end="10:35">Химия</lesson>
-    <lesson index="4" start="10:45" end="11:30">Биология</lesson>
-    <lesson index="5" start="11:40" end="12:25">Обществознание</lesson>
-    <lesson index="6" start="12:35" end="13:20">Музыка</lesson>
-    <lesson index="7" start="13:30" end="14:15">Технология</lesson>
-    <lesson index="8" start="14:25" end="15:10">Классный час</lesson>
+    <lesson index="3" start="09:50" end="10:35">Физика</lesson>
+    <lesson index="4" start="10:45" end="11:30">Русский язык</lesson>
+    <lesson index="5" start="11:40" end="12:25">Английский язык</lesson>
+    <lesson index="6" start="12:35" end="13:20">История</lesson>
   </day>
   <day name="Среда">
     <lesson index="1" start="08:00" end="08:45">Русский язык</lesson>
-    <lesson index="2" start="08:55" end="09:40">Литература</lesson>
-    <lesson index="3" start="09:50" end="10:35">География</lesson>
-    <lesson index="4" start="10:45" end="11:30">История</lesson>
-    <lesson index="5" start="11:40" end="12:25">Физика</lesson>
-    <lesson index="6" start="12:35" end="13:20">Информатика</lesson>
-    <lesson index="7" start="13:30" end="14:15">Английский язык</lesson>
-    <lesson index="8" start="14:25" end="15:10">Физкультура</lesson>
+    <lesson index="2" start="08:55" end="09:40">Русский язык</lesson>
+    <lesson index="3" start="09:50" end="10:35">Биология</lesson>
+    <lesson index="4" start="10:45" end="11:30">Химия</lesson>
+    <lesson index="5" start="11:40" end="12:25">Музыка</lesson>
+    <lesson index="6" start="12:35" end="13:20">Английский язык</lesson>
+    <lesson index="7" start="13:30" end="14:15">Литература</lesson>
   </day>
   <day name="Четверг">
-    <lesson index="1" start="08:00" end="08:45">Математика</lesson>
-    <lesson index="2" start="08:55" end="09:40">История</lesson>
-    <lesson index="3" start="09:50" end="10:35">Физика</lesson>
-    <lesson index="4" start="10:45" end="11:30">Химия</lesson>
-    <lesson index="5" start="11:40" end="12:25">Биология</lesson>
-    <lesson index="6" start="12:35" end="13:20">Обществознание</lesson>
-    <lesson index="7" start="13:30" end="14:15">Информатика</lesson>
-    <lesson index="8" start="14:25" end="15:10">Проектная работа</lesson>
+    <lesson index="1" start="08:00" end="08:45">История</lesson>
+    <lesson index="2" start="08:55" end="09:40">Информатика</lesson>
+    <lesson index="3" start="09:50" end="10:35">Геометрия</lesson>
+    <lesson index="4" start="10:45" end="11:30">Вероятность и статистика</lesson>
+    <lesson index="5" start="11:40" end="12:25">Обществознание</lesson>
+    <lesson index="6" start="12:35" end="13:20">География</lesson>
+    <lesson index="7" start="13:30" end="14:15">Башкирский язык</lesson>
   </day>
   <day name="Пятница">
     <lesson index="1" start="08:00" end="08:45">Русский язык</lesson>
-    <lesson index="2" start="08:55" end="09:40">Математика</lesson>
-    <lesson index="3" start="09:50" end="10:35">Английский язык</lesson>
-    <lesson index="4" start="10:45" end="11:30">Информатика</lesson>
-    <lesson index="5" start="11:40" end="12:25">История</lesson>
-    <lesson index="6" start="12:35" end="13:20">Литература</lesson>
-    <lesson index="7" start="13:30" end="14:15">Физкультура</lesson>
-    <lesson index="8" start="14:25" end="15:10">Клуб по интересам</lesson>
+    <lesson index="2" start="08:55" end="09:40">Литература</lesson>
+    <lesson index="3" start="09:50" end="10:35">Алгебра</lesson>
+    <lesson index="4" start="10:45" end="11:30">Геометрия</lesson>
+    <lesson index="5" start="11:40" end="12:25">Физкультура</lesson>
+    <lesson index="6" start="12:35" end="13:20">Химия</lesson>
+    <lesson index="7" start="13:30" end="14:15">География</lesson>
   </day>
 </schedule>
