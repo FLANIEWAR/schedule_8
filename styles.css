@@ -90,17 +90,20 @@ body[data-theme="light"] .theme-toggle {
   color: #1e1e1e;
 }
 
+.class-picker__label,
 .day-picker__label {
   font-weight: 600;
   margin-bottom: 10px;
 }
 
+.class-picker__buttons,
 .day-picker__buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
+.class-btn,
 .day-btn {
   border: 1px solid var(--card-border);
   background: var(--card);
@@ -114,11 +117,13 @@ body[data-theme="light"] .theme-toggle {
   text-align: center;
 }
 
+.class-btn.active,
 .day-btn.active {
   background: var(--accent);
   color: var(--bg);
 }
 
+.class-btn:hover,
 .day-btn:hover {
   transform: translateY(-1px);
 }
