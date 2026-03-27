@@ -5,21 +5,12 @@ const themeToggle = document.getElementById("themeToggle");
 const classModal = document.getElementById("classModal");
 const openClassModalBtn = document.getElementById("openClassModal");
 const closeClassModalBtn = document.getElementById("closeClassModal");
-const activeClassLabel = document.getElementById("activeClassLabel");
 
 let scheduleData = [];
 let activeClass = "";
 let activeDay = "";
 
-const dayOrder = [
-  "Понедельник",
-  "Вторник",
-  "Среда",
-  "Четверг",
-  "Пятница",
-  "Суббота",
-  "Воскресенье",
-];
+const dayOrder = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница"];
 
 function setTheme(theme) {
   document.body.setAttribute("data-theme", theme);
@@ -62,7 +53,7 @@ function parseSchedule(xmlText) {
 
 function getActiveClass() {
   if (!activeClass && scheduleData.length > 0) {
-    return null;
+    return scheduleData[0];
   }
   return scheduleData.find((item) => item.name === activeClass) || null;
 }
@@ -77,12 +68,6 @@ function closeClassModal() {
   if (!classModal) return;
   classModal.classList.remove("is-open");
   classModal.setAttribute("aria-hidden", "true");
-}
-
-function updateActiveClassLabel() {
-  if (activeClassLabel) {
-    activeClassLabel.textContent = activeClass || "—";
-  }
 }
 
 function renderClassButtons() {
@@ -103,10 +88,8 @@ function renderClassButtons() {
     classButtons.appendChild(btn);
   });
 
-  updateActiveClassLabel();
-
   if (!activeClass && scheduleData.length > 0) {
-    openClassModal();
+    activeClass = scheduleData[0].name;
   }
 }
 
@@ -114,10 +97,6 @@ function renderDayButtons() {
   dayButtons.innerHTML = "";
 
   const active = getActiveClass();
-  if (!active) {
-    lessonsContainer.innerHTML = "<p>Выберите класс, чтобы увидеть расписание.</p>";
-    return;
-  }
   const days = active ? active.days : [];
   const byName = new Map(days.map((day) => [day.name, day]));
   const orderedDays = dayOrder.filter((day) => byName.has(day));
@@ -126,7 +105,7 @@ function renderDayButtons() {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "day-btn";
-    btn.textContent = dayName;
+    btn.textContent = dayName.toLowerCase();
     btn.dataset.day = dayName;
     btn.addEventListener("click", () => selectDay(dayName));
     dayButtons.appendChild(btn);
@@ -171,7 +150,6 @@ function selectClass(className) {
   document.querySelectorAll(".class-btn").forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.class === className);
   });
-  updateActiveClassLabel();
   closeClassModal();
   renderDayButtons();
 }
@@ -227,6 +205,7 @@ async function init() {
     const xmlText = await response.text();
     parseSchedule(xmlText);
     renderClassButtons();
+    renderDayButtons();
   } catch (error) {
     lessonsContainer.innerHTML =
       "<p>Не удалось загрузить расписание. Проверьте файл lessons.xml.</p>";

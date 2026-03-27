@@ -90,13 +90,11 @@ body[data-theme="light"] .theme-toggle {
   color: #1e1e1e;
 }
 
-.class-picker__label,
 .day-picker__label {
   font-weight: 600;
   margin-bottom: 10px;
 }
 
-.class-picker__current,
 .day-picker__buttons {
   display: flex;
   flex-wrap: wrap;
