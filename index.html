@@ -23,7 +23,12 @@
 
       <section class="class-picker" aria-label="Выбор класса">
         <div class="class-picker__label">Класс</div>
-        <div class="class-picker__buttons" id="classButtons"></div>
+        <div class="class-picker__current">
+          <span id="activeClassLabel">—</span>
+          <button class="class-picker__open" id="openClassModal" type="button">
+            Выбрать класс
+          </button>
+        </div>
       </section>
 
       <section class="day-picker" aria-label="Выбор дня недели">
@@ -33,7 +38,16 @@
 
       <main class="lessons" id="lessons"></main>
 
-      
+      <div class="modal" id="classModal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal__backdrop" data-modal-close></div>
+        <div class="modal__panel">
+          <div class="modal__header">
+            <div class="modal__title">Выберите класс</div>
+            <button class="modal__close" id="closeClassModal" type="button">Закрыть</button>
+          </div>
+          <div class="modal__buttons" id="classButtons"></div>
+        </div>
+      </div>
     </div>
 
     <script src="app.js"></script>

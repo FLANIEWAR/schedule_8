@@ -1,27 +1,31 @@
-const dayButtons = document.getElementById("dayButtons");
+п»їconst dayButtons = document.getElementById("dayButtons");
 const classButtons = document.getElementById("classButtons");
 const lessonsContainer = document.getElementById("lessons");
 const themeToggle = document.getElementById("themeToggle");
+const classModal = document.getElementById("classModal");
+const openClassModalBtn = document.getElementById("openClassModal");
+const closeClassModalBtn = document.getElementById("closeClassModal");
+const activeClassLabel = document.getElementById("activeClassLabel");
 
 let scheduleData = [];
 let activeClass = "";
 let activeDay = "";
 
 const dayOrder = [
-  "Понедельник",
-  "Вторник",
-  "Среда",
-  "Четверг",
-  "Пятница",
-  "Суббота",
-  "Воскресенье",
+  "РџРѕРЅРµРґРµР»СЊРЅРёРє",
+  "Р’С‚РѕСЂРЅРёРє",
+  "РЎСЂРµРґР°",
+  "Р§РµС‚РІРµСЂРі",
+  "РџСЏС‚РЅРёС†Р°",
+  "РЎСѓР±Р±РѕС‚Р°",
+  "Р’РѕСЃРєСЂРµСЃРµРЅСЊРµ",
 ];
 
 function setTheme(theme) {
   document.body.setAttribute("data-theme", theme);
   localStorage.setItem("scheduleTheme", theme);
   if (themeToggle) {
-    themeToggle.textContent = theme === "light" ? "Тема: Светлая" : "Тема: Темная";
+    themeToggle.textContent = theme === "light" ? "РўРµРјР°: РЎРІРµС‚Р»Р°СЏ" : "РўРµРјР°: РўРµРјРЅР°СЏ";
   }
 }
 
@@ -38,7 +42,7 @@ function parseSchedule(xmlText) {
           index: lesson.getAttribute("index") || String(idx + 1),
           start: lesson.getAttribute("start") || "",
           end: lesson.getAttribute("end") || "",
-          name: lesson.textContent?.trim() || "Без названия",
+          name: lesson.textContent?.trim() || "Р‘РµР· РЅР°Р·РІР°РЅРёСЏ",
         })
       );
 
@@ -46,28 +50,43 @@ function parseSchedule(xmlText) {
     });
 
   if (classNodes.length === 0) {
-    scheduleData = [{ name: "8А", days: buildDays(xmlDoc) }];
+    scheduleData = [{ name: "8Рђ", days: buildDays(xmlDoc) }];
     return;
   }
 
   scheduleData = classNodes.map((classNode) => ({
-    name: classNode.getAttribute("name") || "Класс",
+    name: classNode.getAttribute("name") || "РљР»Р°СЃСЃ",
     days: buildDays(classNode),
   }));
 }
 
 function getActiveClass() {
   if (!activeClass && scheduleData.length > 0) {
-    return scheduleData[0];
+    return null;
   }
   return scheduleData.find((item) => item.name === activeClass) || null;
 }
 
+function openClassModal() {
+  if (!classModal) return;
+  classModal.classList.add("is-open");
+  classModal.setAttribute("aria-hidden", "false");
+}
+
+function closeClassModal() {
+  if (!classModal) return;
+  classModal.classList.remove("is-open");
+  classModal.setAttribute("aria-hidden", "true");
+}
+
+function updateActiveClassLabel() {
+  if (activeClassLabel) {
+    activeClassLabel.textContent = activeClass || "вЂ”";
+  }
+}
+
 function renderClassButtons() {
   if (!classButtons) {
-    if (scheduleData.length > 0 && !activeClass) {
-      activeClass = scheduleData[0].name;
-    }
     renderDayButtons();
     return;
   }
@@ -84,8 +103,10 @@ function renderClassButtons() {
     classButtons.appendChild(btn);
   });
 
+  updateActiveClassLabel();
+
   if (!activeClass && scheduleData.length > 0) {
-    selectClass(scheduleData[0].name);
+    openClassModal();
   }
 }
 
@@ -93,6 +114,10 @@ function renderDayButtons() {
   dayButtons.innerHTML = "";
 
   const active = getActiveClass();
+  if (!active) {
+    lessonsContainer.innerHTML = "<p>Р’С‹Р±РµСЂРёС‚Рµ РєР»Р°СЃСЃ, С‡С‚РѕР±С‹ СѓРІРёРґРµС‚СЊ СЂР°СЃРїРёСЃР°РЅРёРµ.</p>";
+    return;
+  }
   const days = active ? active.days : [];
   const byName = new Map(days.map((day) => [day.name, day]));
   const orderedDays = dayOrder.filter((day) => byName.has(day));
@@ -119,7 +144,7 @@ function renderLessons(dayName) {
   const lessons = day ? day.lessons : [];
 
   if (lessons.length === 0) {
-    lessonsContainer.innerHTML = "<p>В этот день уроков нет.</p>";
+    lessonsContainer.innerHTML = "<p>Р’ СЌС‚РѕС‚ РґРµРЅСЊ СѓСЂРѕРєРѕРІ РЅРµС‚.</p>";
     return;
   }
 
@@ -132,9 +157,9 @@ function renderLessons(dayName) {
     card.className = "lesson-card";
     card.style.animationDelay = `${idx * 40}ms`;
     card.innerHTML = `
-      <div class="lesson-card__index">Урок ${lesson.index}</div>
+      <div class="lesson-card__index">РЈСЂРѕРє ${lesson.index}</div>
       <div class="lesson-card__name">${lesson.name}</div>
-      <div class="lesson-card__time">${lesson.start} — ${lesson.end}</div>
+      <div class="lesson-card__time">${lesson.start} вЂ” ${lesson.end}</div>
     `;
     lessonsContainer.appendChild(card);
   });
@@ -146,6 +171,8 @@ function selectClass(className) {
   document.querySelectorAll(".class-btn").forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.class === className);
   });
+  updateActiveClassLabel();
+  closeClassModal();
   renderDayButtons();
 }
 
@@ -172,15 +199,37 @@ function initTheme() {
 async function init() {
   initTheme();
 
+  if (openClassModalBtn) {
+    openClassModalBtn.addEventListener("click", openClassModal);
+  }
+
+  if (closeClassModalBtn) {
+    closeClassModalBtn.addEventListener("click", closeClassModal);
+  }
+
+  if (classModal) {
+    classModal.addEventListener("click", (event) => {
+      const target = event.target;
+      if (target && target.hasAttribute("data-modal-close")) {
+        closeClassModal();
+      }
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeClassModal();
+      }
+    });
+  }
+
   try {
     const response = await fetch("lessons.xml");
-    if (!response.ok) throw new Error("Не удалось загрузить XML");
+    if (!response.ok) throw new Error("РќРµ СѓРґР°Р»РѕСЃСЊ Р·Р°РіСЂСѓР·РёС‚СЊ XML");
     const xmlText = await response.text();
     parseSchedule(xmlText);
     renderClassButtons();
   } catch (error) {
     lessonsContainer.innerHTML =
-      "<p>Не удалось загрузить расписание. Проверьте файл lessons.xml.</p>";
+      "<p>РќРµ СѓРґР°Р»РѕСЃСЊ Р·Р°РіСЂСѓР·РёС‚СЊ СЂР°СЃРїРёСЃР°РЅРёРµ. РџСЂРѕРІРµСЂСЊС‚Рµ С„Р°Р№Р» lessons.xml.</p>";
     console.error(error);
   }
 }
