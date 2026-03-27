@@ -5,6 +5,7 @@ const themeToggle = document.getElementById("themeToggle");
 const classModal = document.getElementById("classModal");
 const openClassModalBtn = document.getElementById("openClassModal");
 const closeClassModalBtn = document.getElementById("closeClassModal");
+const activeClassLabel = document.getElementById("activeClassLabel");
 
 let scheduleData = [];
 let activeClass = "";
@@ -70,6 +71,12 @@ function closeClassModal() {
   classModal.setAttribute("aria-hidden", "true");
 }
 
+function updateActiveClassLabel() {
+  if (activeClassLabel) {
+    activeClassLabel.textContent = activeClass || "8А";
+  }
+}
+
 function renderClassButtons() {
   if (!classButtons) {
     renderDayButtons();
@@ -91,6 +98,8 @@ function renderClassButtons() {
   if (!activeClass && scheduleData.length > 0) {
     activeClass = scheduleData[0].name;
   }
+
+  updateActiveClassLabel();
 }
 
 function renderDayButtons() {
@@ -150,6 +159,7 @@ function selectClass(className) {
   document.querySelectorAll(".class-btn").forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.class === className);
   });
+  updateActiveClassLabel();
   closeClassModal();
   renderDayButtons();
 }

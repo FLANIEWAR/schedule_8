@@ -120,11 +120,12 @@ body[data-theme="light"] .theme-toggle {
   border: 1px solid var(--card-border);
   background: var(--card);
   color: var(--fg);
-  padding: 10px 16px;
+  padding: 8px 12px;
   border-radius: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+  font-size: 14px;
 }
 
 .class-picker__open:hover {
@@ -160,6 +161,10 @@ body[data-theme="light"] .theme-toggle {
   padding: 22px;
   box-shadow: 0 24px 60px var(--shadow);
   animation: fadeUp 240ms ease both;
+}
+
+.modal__panel--small {
+  width: min(360px, 90vw);
 }
 
 .modal__header {
