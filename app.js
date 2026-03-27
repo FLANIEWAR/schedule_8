@@ -82,7 +82,7 @@ function renderClassButtons() {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "class-btn";
-    btn.textContent = classItem.name;
+    btn.textContent = `Класс ${classItem.name}`;
     btn.dataset.class = classItem.name;
     btn.addEventListener("click", () => selectClass(classItem.name));
     classButtons.appendChild(btn);
@@ -200,10 +200,15 @@ async function init() {
   }
 
   try {
-    const response = await fetch("lessons.xml");
-    if (!response.ok) throw new Error("Не удалось загрузить XML");
-    const xmlText = await response.text();
-    parseSchedule(xmlText);
+    const inlineXml = document.getElementById("scheduleXml");
+    if (inlineXml && inlineXml.textContent.trim()) {
+      parseSchedule(inlineXml.textContent.trim());
+    } else {
+      const response = await fetch("lessons.xml");
+      if (!response.ok) throw new Error("Не удалось загрузить XML");
+      const xmlText = await response.text();
+      parseSchedule(xmlText);
+    }
     renderClassButtons();
     renderDayButtons();
   } catch (error) {
