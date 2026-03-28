@@ -247,8 +247,8 @@ body[data-theme="light"] .theme-toggle {
 .lesson-card__meta {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: flex-start;
+  gap: 10px;
   font-size: 15px;
   color: var(--muted);
 }
@@ -256,6 +256,7 @@ body[data-theme="light"] .theme-toggle {
 .lesson-card__room {
   font-weight: 600;
   white-space: nowrap;
+  margin-left: 4px;
 }
 
 .footer {
