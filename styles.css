@@ -244,6 +244,20 @@ body[data-theme="light"] .theme-toggle {
   color: var(--muted);
 }
 
+.lesson-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.lesson-card__room {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 .footer {
   font-size: 13px;
   color: var(--muted);

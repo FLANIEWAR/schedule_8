@@ -34,6 +34,7 @@ function parseSchedule(xmlText) {
           index: lesson.getAttribute("index") || String(idx + 1),
           start: lesson.getAttribute("start") || "",
           end: lesson.getAttribute("end") || "",
+          room: lesson.getAttribute("room") || "",
           name: lesson.textContent?.trim() || "Без названия",
         })
       );
@@ -141,13 +142,17 @@ function renderLessons(dayName) {
     .sort((a, b) => Number(a.index) - Number(b.index));
 
   orderedLessons.forEach((lesson, idx) => {
+    const roomLabel = lesson.room ? `Каб. ${lesson.room}` : "Каб. —";
     const card = document.createElement("article");
     card.className = "lesson-card";
     card.style.animationDelay = `${idx * 40}ms`;
     card.innerHTML = `
       <div class="lesson-card__index">Урок ${lesson.index}</div>
       <div class="lesson-card__name">${lesson.name}</div>
-      <div class="lesson-card__time">${lesson.start} — ${lesson.end}</div>
+      <div class="lesson-card__meta">
+        <span class="lesson-card__time">${lesson.start} — ${lesson.end}</span>
+        <span class="lesson-card__room">${roomLabel}</span>
+      </div>
     `;
     lessonsContainer.appendChild(card);
   });
